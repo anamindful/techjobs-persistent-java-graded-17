@@ -16,6 +16,8 @@ public abstract class AbstractEntity {
     @Id
     private int id;
 
+    @NotNull
+    @Size(min = 1, max = 255)
     private String name;
 
     public int getId() {
