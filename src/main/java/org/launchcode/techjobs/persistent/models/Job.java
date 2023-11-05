@@ -1,21 +1,21 @@
 package org.launchcode.techjobs.persistent.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-
-import java.util.List;
+import jakarta.persistence.*;
 
 @Entity
-public class Job  extends AbstractEntity {
+public class Job extends AbstractEntity {
+
+    //test pass when commented out, bootrun only works if uncommented
+    @Id
+    @GeneratedValue
+//    private int id;
+//
+//    private String name;
 
     @ManyToOne
     private Employer employer;
-    private String name;
     private String skills;
-
 
     public Job() {
     }
@@ -27,6 +27,11 @@ public class Job  extends AbstractEntity {
     }
 
     // Getters and setters.
+
+//    public int getID(){
+//        return id;
+//    }
+
     public Employer getEmployer(){
         return employer;
     }
@@ -36,13 +41,13 @@ public class Job  extends AbstractEntity {
     }
 
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
     public String getSkills() {
         return skills;
