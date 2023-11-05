@@ -11,10 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.launchcode.techjobs.persistent.models.data.EmployerRepository;
-
+import org.launchcode.techjobs.persistent.models.Skill;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by LaunchCode
@@ -45,10 +44,14 @@ public class HomeController {
         return "add";
     }
 
+
     @PostMapping("add")
     public String processAddJobForm
             (@ModelAttribute @Valid Job newJob,
-             Errors errors, Model model, @RequestParam int employerId) {
+             Errors errors,
+             Model model,
+             @RequestParam int employerId,
+             @RequestParam List<Integer> skills) {
         if (errors.hasErrors()) {
 	    model.addAttribute("title", "Add Job");
             return "add";
@@ -59,7 +62,9 @@ public class HomeController {
 
         if (selectedEmployer != null) {
 //set selected employer
+            List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
             newJob.setEmployer(selectedEmployer);
+            newJob.setSkills(skillObjs);
 //save to job repository
         jobRepository.save(newJob);
         return "redirect:";

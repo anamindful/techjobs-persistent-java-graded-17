@@ -19,6 +19,15 @@
         <span th:errors="${employer.location}" class="error"></span>
     </div>
 
+// anastasia added this checkbox form
+    <div class="form-group">
+        <label for="skills">Skills</label>
+        <div th:each="skill : ${skills}">
+            <input type="checkbox" name="skills" th:value="${skill.id}"/>
+            <label th:for="skills" th:text="${skill.name}"></label>
+        </div>
+    </div>
+
     <input type="submit" value="Add Employer" />
 </form>
 
