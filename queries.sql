@@ -1,17 +1,15 @@
 --Part 1
-CREATE TABLE job (
-	ID INT AUTO_INCREMENT PRIMARY KEY,
-    Employer VARCHAR(255) NOT NULL,
-	Name VARCHAR(255) NOT NULL,
-    Skills TEXT
-);
+--Types in 'job'
+-- ID
+-- Employer
+-- Name
+-- Skills
 DESCRIBE job;
 --Part 2
 SELECT name FROM employer WHERE location = "St. Louis City";
 --Part 3
 DROP TABLE job;
 --Part 4
-SELECT DISTINCT skill.name
+SELECT name
 FROM skill
-INNER JOIN job_skill ON skill.id = job_skill.skill_id
-ORDER BY skill.name;
+ORDER BY name;

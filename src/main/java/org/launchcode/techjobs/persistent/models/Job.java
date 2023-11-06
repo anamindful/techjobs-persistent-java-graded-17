@@ -7,13 +7,6 @@ import java.util.List;
 @Entity
 public class Job extends AbstractEntity {
 
-//test pass when commented out, bootrun only works if uncommented
-//    @Id
-//    @GeneratedValue
-//    private int id;
-//
-//    private String name;
-
     @ManyToOne
     private Employer employer;
 
