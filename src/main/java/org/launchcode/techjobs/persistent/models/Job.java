@@ -1,5 +1,9 @@
 package org.launchcode.techjobs.persistent.models;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.JoinColumn;
 
 import jakarta.persistence.*;
 import java.util.List;
@@ -16,7 +20,6 @@ public class Job extends AbstractEntity {
     joinColumns = @JoinColumn(name = "job_id"),
     inverseJoinColumns = @JoinColumn(name = "skill_id")
     )
-
   private List<Skill> skills;
 
     public Job() {
