@@ -24,13 +24,13 @@ import java.util.HashMap;
 public class ListController {
 
     @Autowired
-    public JobRepository jobRepository;
+    public SkillRepository skillRepository;
 
     @Autowired
     public EmployerRepository employerRepository;
 
     @Autowired
-    public SkillRepository skillRepository;
+    private JobRepository jobRepository;
 
     static HashMap<String, String> columnChoices = new HashMap<>();
 
@@ -44,11 +44,11 @@ public class ListController {
 
     @RequestMapping("")
     public String list(Model model) {
-        Iterable<Job> jobs = jobRepository.findAll();
+//        Iterable<Job> jobs = jobRepository.findAll();
         Iterable<Employer> employers = employerRepository.findAll();
         Iterable<Skill> skills = skillRepository.findAll();
 
-        model.addAttribute("jobs", jobs);
+//        model.addAttribute("jobs", jobs);
         model.addAttribute("employers", employers);
         model.addAttribute("skills", skills);
         return "list";

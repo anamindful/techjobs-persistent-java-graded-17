@@ -12,5 +12,5 @@ DROP TABLE job;
 --Part 4
 SELECT name
 FROM skill
-LEFT JOIN job_skill ON skill.id = job_skill.skill.id
+LEFT JOIN job_skill ON skill.id = job_skill.skill_id
 ORDER BY name;
