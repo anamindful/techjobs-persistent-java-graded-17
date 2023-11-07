@@ -45,6 +45,7 @@ public class HomeController {
     public String displayAddJobForm(Model model) {
 	    model.addAttribute("title", "Add Job");
         model.addAttribute("employers", employerRepository.findAll());
+        model.addAttribute("skills", skillRepository.findAll());
         model.addAttribute(new Job());
         return "add";
     }
@@ -64,11 +65,10 @@ public class HomeController {
 
         Employer selectedEmployer = employerRepository.findById(employerId).orElse(new Employer());
         newJob.setEmployer(selectedEmployer);
+
         if (selectedEmployer != null) {
-
-//set selected employer
-
             List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
+            newJob.setSkills(skillObjs);
             newJob.setSkills(skillObjs);
 //save to job repository
         jobRepository.save(newJob);
@@ -83,8 +83,13 @@ public class HomeController {
 
     @GetMapping("view/{jobId}")
     public String displayViewJob(Model model, @PathVariable int jobId) {
-
-            return "view";
+            Job job = jobRepository.findById(jobId).orElse(new Job());
+            if (job != null) {
+                model.addAttribute("job", job);
+                return "view";
+            } else {
+                model.addAttribute("title", "Job not found");
+                return "error";
+            }
     }
-
 }

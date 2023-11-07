@@ -30,12 +30,11 @@ public class ListController {
     public EmployerRepository employerRepository;
 
     @Autowired
-    private JobRepository jobRepository;
+    public JobRepository jobRepository;
 
     static HashMap<String, String> columnChoices = new HashMap<>();
 
     public ListController () {
-
         columnChoices.put("all", "All");
         columnChoices.put("employer", "Employer");
         columnChoices.put("skill", "Skill");
@@ -44,11 +43,9 @@ public class ListController {
 
     @RequestMapping("")
     public String list(Model model) {
-//        Iterable<Job> jobs = jobRepository.findAll();
         Iterable<Employer> employers = employerRepository.findAll();
         Iterable<Skill> skills = skillRepository.findAll();
 
-//        model.addAttribute("jobs", jobs);
         model.addAttribute("employers", employers);
         model.addAttribute("skills", skills);
         return "list";
