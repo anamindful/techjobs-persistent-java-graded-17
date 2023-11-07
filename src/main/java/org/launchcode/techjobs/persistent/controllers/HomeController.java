@@ -1,6 +1,8 @@
 package org.launchcode.techjobs.persistent.controllers;
 
 import jakarta.validation.Valid;
+import org.hibernate.jdbc.Expectation;
+import org.hibernate.jdbc.Expectations;
 import org.launchcode.techjobs.persistent.models.Employer;
 import org.launchcode.techjobs.persistent.models.Job;
 import org.launchcode.techjobs.persistent.models.data.JobRepository;
@@ -30,6 +32,9 @@ public class HomeController {
     @Autowired
     private SkillRepository skillRepository;
 
+    public HomeController() {
+    }
+
     @RequestMapping("/")
     public String index(Model model) {
         model.addAttribute("title", "MyJobs");
@@ -46,8 +51,8 @@ public class HomeController {
 
 
     @PostMapping("add")
-    public String processAddJobForm
-            (@ModelAttribute @Valid Job newJob,
+    public String processAddJobForm(
+             @ModelAttribute @Valid Job newJob,
              Errors errors,
              Model model,
              @RequestParam int employerId,
@@ -57,13 +62,13 @@ public class HomeController {
             return "add";
         }
 
-//retrieve the employer object using employerId
-        Employer selectedEmployer = employerRepository.findById(employerId).orElse(null);
-
+        Employer selectedEmployer = employerRepository.findById(employerId).orElse(new Employer());
+        newJob.setEmployer(selectedEmployer);
         if (selectedEmployer != null) {
+
 //set selected employer
+
             List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
-            newJob.setEmployer(selectedEmployer);
             newJob.setSkills(skillObjs);
 //save to job repository
         jobRepository.save(newJob);

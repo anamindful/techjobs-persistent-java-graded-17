@@ -24,13 +24,13 @@ import java.util.HashMap;
 public class ListController {
 
     @Autowired
-    private JobRepository jobRepository;
+    public JobRepository jobRepository;
 
     @Autowired
-    private EmployerRepository employerRepository;
+    public EmployerRepository employerRepository;
 
     @Autowired
-    private SkillRepository skillRepository;
+    public SkillRepository skillRepository;
 
     static HashMap<String, String> columnChoices = new HashMap<>();
 
