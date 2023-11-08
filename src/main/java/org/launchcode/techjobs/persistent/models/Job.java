@@ -21,6 +21,7 @@ public class Job extends AbstractEntity {
     joinColumns = @JoinColumn(name = "job_id"),
     inverseJoinColumns = @JoinColumn(name = "skill_id")
     )
+
   private List<Skill> skills;
 
     public Job() {
